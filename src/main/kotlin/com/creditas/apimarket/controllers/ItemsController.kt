@@ -5,6 +5,8 @@ import com.creditas.apimarket.services.I_ItemService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -21,9 +23,12 @@ class ItemsController {
     }
 
     @RequestMapping("items", "GET", "application/json")
-            /*fun getPatients():ResponseEntity<List<Patient>>{
-                val list:List<Patient> = patientService.getPatients()
-                return ResponseEntity(list, HttpStatus.OK)
-            }*/
+
     fun getPatients(): ResponseEntity<List<Item>> = ResponseEntity(itemService.getItems(), HttpStatus.OK)
+
+    @PostMapping("items")
+    fun addItem(@RequestBody item: Item):ResponseEntity<Item>{
+        val result:Item = itemService.addItem(item)
+        return ResponseEntity(result,HttpStatus.OK)
+    }
 }
