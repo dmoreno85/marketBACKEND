@@ -8,7 +8,7 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name="Users")
+@Table(name="users")
 data class User(
         @Id
         @GeneratedValue

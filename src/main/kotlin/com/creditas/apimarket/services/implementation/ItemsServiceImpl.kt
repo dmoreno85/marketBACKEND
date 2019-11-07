@@ -3,15 +3,22 @@ package com.creditas.apimarket.services.implementation
 import com.creditas.apimarket.domain.dao.I_ItemsDao
 import com.creditas.apimarket.domain.entities.Item
 import com.creditas.apimarket.services.I_ItemService
+
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.web.bind.annotation.CrossOrigin
+import java.util.*
 
 @Service
  class ItemsServiceImpl : I_ItemService {
 
 
     @Autowired
+
     private lateinit var  itemDao : I_ItemsDao
+
+
+
     override fun getItems(): List<Item> {
         return itemDao.findAll() as List<Item>
     }
@@ -19,5 +26,11 @@ import org.springframework.stereotype.Service
     override fun addItem(item: Item): Item {
        return itemDao.save(item)
     }
+
+    override fun getItemById(id: Int): Optional<Item> = itemDao.findById(id)
+
+
+
+
 
 }
