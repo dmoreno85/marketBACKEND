@@ -6,17 +6,16 @@ import com.creditas.apimarket.services.I_ItemService
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.CrossOrigin
+
 import java.util.*
 
 @Service
- class ItemsServiceImpl : I_ItemService {
+class ItemsServiceImpl : I_ItemService {
 
 
     @Autowired
 
-    private lateinit var  itemDao : I_ItemsDao
-
+    private lateinit var itemDao: I_ItemsDao
 
 
     override fun getItems(): List<Item> {
@@ -24,13 +23,12 @@ import java.util.*
     }
 
     override fun addItem(item: Item): Item {
-       return itemDao.save(item)
+        return itemDao.save(item)
     }
 
     override fun getItemById(id: Int): Optional<Item> = itemDao.findById(id)
 
-
-
+    override fun getItemByModel(model: String): Optional<Item> = itemDao.findByModel(model)
 
 
 }

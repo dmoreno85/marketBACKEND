@@ -7,4 +7,5 @@ interface I_ItemService {
     fun getItems(): List<Item>
     fun addItem(item: Item): Item
     fun getItemById(Id: Int): Optional<Item>
+    fun getItemByModel(model : String) :Optional<Item>
 }

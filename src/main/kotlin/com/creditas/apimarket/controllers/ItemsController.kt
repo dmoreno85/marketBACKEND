@@ -28,6 +28,7 @@ class ItemsController {
         val result: Item = itemService.addItem(item)
         return ResponseEntity(result, HttpStatus.OK)
     }
+    @CrossOrigin(origins = ["http://localhost:3000"])
     @GetMapping("items/{id}")
     fun getItemById(@PathVariable id:Int): ResponseEntity<Item>
     {
@@ -37,10 +38,17 @@ class ItemsController {
                 .orElse(ResponseEntity(HttpStatus.NO_CONTENT))
 
     }
+    @CrossOrigin(origins = ["http://localhost:3000"])
+    @GetMapping("search/{model}")
+    fun getItemByModel(@PathVariable model:String): ResponseEntity<Item>
+    {
+        val result: Optional<Item> = itemService.getItemByModel(model)
 
-//    @GetMapping("/{id}")
-//    fun getItemById(@PathVariable("id") Id: Int): Item? =
-//            itemService.getItemById(Id)
+        return result.map {res-> ResponseEntity(res, HttpStatus.OK)}
+                .orElse(ResponseEntity(HttpStatus.NO_CONTENT))
+
+    }
+
 
 
 }
