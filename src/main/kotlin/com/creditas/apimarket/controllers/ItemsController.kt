@@ -2,13 +2,11 @@ package com.creditas.apimarket.controllers
 
 import com.creditas.apimarket.domain.entities.Item
 import com.creditas.apimarket.services.I_ItemService
-import com.creditas.apimarket.services.implementation.ItemsServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
-import java.util.logging.Logger
 
 
 @RestController
@@ -28,27 +26,26 @@ class ItemsController {
         val result: Item = itemService.addItem(item)
         return ResponseEntity(result, HttpStatus.OK)
     }
+
     @CrossOrigin(origins = ["http://localhost:3000"])
     @GetMapping("items/{id}")
-    fun getItemById(@PathVariable id:Int): ResponseEntity<Item>
-    {
+    fun getItemById(@PathVariable id: Int): ResponseEntity<Item> {
         val result: Optional<Item> = itemService.getItemById(id)
 
-        return result.map {res-> ResponseEntity(res, HttpStatus.OK)}
+        return result.map { res -> ResponseEntity(res, HttpStatus.OK) }
                 .orElse(ResponseEntity(HttpStatus.NO_CONTENT))
 
     }
+
     @CrossOrigin(origins = ["http://localhost:3000"])
     @GetMapping("search/{model}")
-    fun getItemByModel(@PathVariable model:String): ResponseEntity<Item>
-    {
+    fun getItemByModel(@PathVariable model: String): ResponseEntity<Item> {
         val result: Optional<Item> = itemService.getItemByModel(model)
 
-        return result.map {res-> ResponseEntity(res, HttpStatus.OK)}
+        return result.map { res -> ResponseEntity(res, HttpStatus.OK) }
                 .orElse(ResponseEntity(HttpStatus.NO_CONTENT))
 
     }
-
 
 
 }
