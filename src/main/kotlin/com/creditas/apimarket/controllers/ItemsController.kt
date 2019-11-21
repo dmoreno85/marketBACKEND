@@ -17,7 +17,6 @@ class ItemsController {
 
     @CrossOrigin(origins = ["http://localhost:3000"]) //Para autenticar CORS
     @RequestMapping("items", "GET", "application/json")
-
     fun getPatients(): ResponseEntity<List<Item>> = ResponseEntity(itemService.getItems(), HttpStatus.OK)
 
     @CrossOrigin(origins = ["http://localhost:3000"]) //Para autenticar CORS
@@ -34,7 +33,6 @@ class ItemsController {
 
         return result.map { res -> ResponseEntity(res, HttpStatus.OK) }
                 .orElse(ResponseEntity(HttpStatus.NO_CONTENT))
-
     }
 
     @CrossOrigin(origins = ["http://localhost:3000"])
@@ -44,7 +42,6 @@ class ItemsController {
 
         return result.map { res -> ResponseEntity(res, HttpStatus.OK) }
                 .orElse(ResponseEntity(HttpStatus.NO_CONTENT))
-
     }
 
 
